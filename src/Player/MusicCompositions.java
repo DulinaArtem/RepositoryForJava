@@ -16,10 +16,10 @@ public class MusicCompositions {
         store = new Song[countSongs];
     }
 
-    MusicCompositions(String path,int count) throws IOException {
+    MusicCompositions(String path, int count) throws IOException {
         store = new Song[count];
         StringTokenizer st;
-        String strTemp = " ";
+        String strTemp;
         File temp = new File(path);
         BufferedReader bf = new BufferedReader(new FileReader(temp));
         while ((strTemp = bf.readLine()) != null) {
@@ -49,17 +49,24 @@ public class MusicCompositions {
         String performer;
         String songTitle;
         String genre;
+        int min = 0;
+        int seconds = 0;
         int duration;
 
         Song(String performer, String songTitle, String genre, int duration) {
             this.performer = performer;
             this.songTitle = songTitle;
             this.genre = genre;
-            this.duration = duration;
+            if (duration / 60 != 0) {
+                this.min = duration / 60;
+                this.seconds = duration % 60;
+            } else
+                this.seconds = duration;
         }
 
         public String toString() {
-            return performer + " " + songTitle + " " + genre + " " + duration;
+            return "Исполнитель: " + performer + " " + "Название песни: " + songTitle + " " +
+                    "Жанр: " + genre + " " + "Длительность: " + min + ":" + seconds;
         }
     }
 }
