@@ -1,11 +1,13 @@
 package Player;
 
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.StringTokenizer;
+
 public class MainControl {
-    public static void main(String [] args) {
-        MusicCompositions comp = new MusicCompositions(100);
-        comp.addSong("God", "Dance", 100);
-        comp.addSong("God2", "Dance", 100);
+    public static void main(String [] args) throws IOException {
+        MusicCompositions comp = new MusicCompositions("songs.txt",100);
         System.out.println(comp);
     }
 }

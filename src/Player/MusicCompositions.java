@@ -1,6 +1,9 @@
 package Player;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.StringTokenizer;
 
 public class MusicCompositions {
@@ -13,13 +16,14 @@ public class MusicCompositions {
         store = new Song[countSongs];
     }
 
-    MusicCompositions(String path) throws FileNotFoundException, IOException {
+    MusicCompositions(String path,int count) throws IOException {
+        store = new Song[count];
         StringTokenizer st;
         String strTemp = " ";
         File temp = new File(path);
         BufferedReader bf = new BufferedReader(new FileReader(temp));
-        while (strTemp != null) {
-            st = new StringTokenizer(strTemp = bf.readLine(), ":");
+        while ((strTemp = bf.readLine()) != null) {
+            st = new StringTokenizer(strTemp, ":");
             while (st.hasMoreTokens()) {
                 store[position] = new Song(st.nextToken(), st.nextToken(), st.nextToken(), Integer.parseInt(st.nextToken()));
             }
@@ -28,8 +32,8 @@ public class MusicCompositions {
         }
     }
 
-    public void addSong(String performer, String songTitle, String ganre, int duration) {
-        store[position] = new Song(performer, songTitle, ganre, duration);
+    public void addSong(String performer, String songTitle, String genre, int duration) {
+        store[position] = new Song(performer, songTitle, genre, duration);
         position++;
         countSongs = position;
     }
@@ -44,18 +48,18 @@ public class MusicCompositions {
     private class Song {
         String performer;
         String songTitle;
-        String ganre;
+        String genre;
         int duration;
 
-        Song(String performer, String songTitle, String ganre, int duration) {
+        Song(String performer, String songTitle, String genre, int duration) {
             this.performer = performer;
             this.songTitle = songTitle;
-            this.ganre = ganre;
+            this.genre = genre;
             this.duration = duration;
         }
 
         public String toString() {
-            return performer + " " + songTitle + " " + ganre + " " + duration;
+            return performer + " " + songTitle + " " + genre + " " + duration;
         }
     }
 }
