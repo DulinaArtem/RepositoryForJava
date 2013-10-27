@@ -41,11 +41,15 @@ public class MusicCompositions {
     public String toString() {
         String temp = "";
         for (int i = 0; i < countSongs; i++)
-            temp += store[i] + "\n";
+            temp +=i+1 + " " + store[i] + "\n";
         return temp;
     }
 
-    private class Song {
+    public int getDuration(int n) {
+        return store[n - 1].duration;
+    }
+
+    protected class Song {
         String performer;
         String songTitle;
         String genre;
